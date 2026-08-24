@@ -3,62 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
+    <title>✨ Tic-Tac-Toe Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="background-animation">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
     <div class="container">
-        <h1>🎮 Tic-Tac-Toe</h1>
-        
+        <div class="header">
+            <h1>🎮 Tic-Tac-Toe <span class="pro-badge">PRO</span></h1>
+            <div class="theme-toggle">
+                <button class="theme-btn" data-theme="light">☀️</button>
+                <button class="theme-btn" data-theme="dark">🌙</button>
+                <button class="theme-btn active" data-theme="neon">💜</button>
+            </div>
+        </div>
+
         <div class="game-mode">
-            <button class="mode-btn active" data-mode="player">👥 vs Player</button>
-            <button class="mode-btn" data-mode="ai">🤖 vs AI</button>
+            <button class="mode-btn active" data-mode="player">
+                <span class="icon">👥</span> vs Player
+            </button>
+            <button class="mode-btn" data-mode="ai">
+                <span class="icon">🤖</span> vs AI
+            </button>
+            <button class="mode-btn" data-mode="online">
+                <span class="icon">🌐</span> Online
+            </button>
         </div>
 
         <div class="scoreboard">
-            <div class="score">
-                <span class="score-label">Player X</span>
-                <span class="score-value" id="scoreX">0</span>
+            <div class="score-card player-x">
+                <div class="player-icon">❌</div>
+                <div class="score-details">
+                    <span class="score-label">Player X</span>
+                    <span class="score-value" id="scoreX">0</span>
+                </div>
+                <div class="score-bar" style="--progress: 50%"></div>
             </div>
-            <div class="score">
-                <span class="score-label">Ties</span>
-                <span class="score-value" id="scoreTie">0</span>
+            <div class="score-card ties">
+                <div class="player-icon">🤝</div>
+                <div class="score-details">
+                    <span class="score-label">Ties</span>
+                    <span class="score-value" id="scoreTie">0</span>
+                </div>
             </div>
-            <div class="score">
-                <span class="score-label">Player O</span>
-                <span class="score-value" id="scoreO">0</span>
+            <div class="score-card player-o">
+                <div class="player-icon">⭕</div>
+                <div class="score-details">
+                    <span class="score-label">Player O</span>
+                    <span class="score-value" id="scoreO">0</span>
+                </div>
+                <div class="score-bar" style="--progress: 50%"></div>
             </div>
         </div>
 
-        <div class="game-board" id="gameBoard">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
+        <div class="game-board-wrapper">
+            <div class="game-board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
         </div>
 
         <div class="game-status">
+            <div class="status-indicator"></div>
             <span id="statusMessage">Player X's turn</span>
         </div>
 
         <div class="controls">
-            <button class="btn btn-reset" id="resetGame">🔄 New Game</button>
-            <button class="btn btn-reset" id="resetScore">📊 Reset Score</button>
+            <button class="btn btn-reset" id="resetGame">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                New Game
+            </button>
+            <button class="btn btn-reset" id="resetScore">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"></path>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                Reset Score
+            </button>
         </div>
 
         <div class="winning-overlay" id="winningOverlay">
             <div class="winning-content">
+                <div class="winner-emoji" id="winnerEmoji">🏆</div>
                 <h2 id="winnerMessage">🎉 Winner!</h2>
+                <p class="winner-subtext">Amazing play!</p>
+                <div class="confetti-container" id="confettiContainer"></div>
                 <button class="btn btn-play-again" id="playAgain">Play Again</button>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     <script src="script.js"></script>
 </body>
 </html>
